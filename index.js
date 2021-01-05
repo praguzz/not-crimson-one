@@ -35,7 +35,7 @@ function handleEvent(event) {
       if (result.intent !== 'None') {
         console.log(result);
         searchReply.text = result.entities?.[0].sourceText ?? "Not Found";
-        request({url: "http://api.openweathermap.org/data/2.5/weather?q="+response.entities?.[0]?.sourceText.replace(" ", "%20")+"&appid=" + openWeatherSecret, method: "GET"}, (err, resp, body) => {
+        request({url: "http://api.openweathermap.org/data/2.5/weather?q="+result.entities?.[0]?.sourceText.replace(" ", "%20")+"&appid=" + openWeatherSecret, method: "GET"}, (err, resp, body) => {
             searchReply.text = resp;
         })
 
