@@ -1,6 +1,6 @@
 'use strict';
 const line = require('@line/bot-sdk');
-const { request } = require('request');
+const request = require('request');
 const express = require('express');
 const nlpManager = require('./ai-loader');
 const config = {
