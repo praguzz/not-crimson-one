@@ -3,7 +3,13 @@ const {NlpManager} = require('node-nlp');
 const manager = new NlpManager({languages: ['en']});
 
 (async () => {
-    manager.addNamedEntityText('places', 'city', ['en'], ['Taipei', 'Tainan', 'Taichung', 'Taitung', 'Kaohsiung', 'Hsinchu', 'Taoyuan', 'Chiayi'])
+    // manager.addNamedEntityText('places', 'city', ['en'], ['Taipei', 'Tainan', 'Taichung', 'Taitung', 'Kaohsiung', 'Hsinchu', 'Taoyuan', 'Chiayi'])
+    const cityEntity = manager.addTrimEntity("city");
+    cityEntity.addAfterLastCondition('en', 'in');
+    cityEntity.addAfterLastCondition('en', 'to');
+    // cityEntity.addBeforeFirstCondition('en', '\'s');
+
+    manager.slotManager.addSlot('places', 'city', true, {en: "Which city?"});
 
     manager.addDocument('en', 'How is the weather in %place%', 'weather.search');
     manager.addDocument('en', 'Weather in %place%', 'weather.search');
@@ -12,6 +18,7 @@ const manager = new NlpManager({languages: ['en']});
 
     await manager.train();
     manager.save();
-    const response = await manager.process('en', 'Weather in Tainan');
-    console.log(JSON.stringify(response));
+    const response = await manager.process('en', 'Weather in Taipei');
+    // console.log(JSON.stringify(response));
+    console.log(JSON.stringify(response.entities?.[0].sourceText));
 })();
