@@ -17,6 +17,9 @@ app.post('/callback', line.middleware(config), (req, res) => {
       res.status(500).end();
     });
 });
+app.all('*', (req, res) => {
+    res.status(200).json({"message" : "test"});
+})
 function handleEvent(event) {
   if (event.replyToken === "00000000000000000000000000000000" ||
     event.replyToken === "ffffffffffffffffffffffffffffffff") {
