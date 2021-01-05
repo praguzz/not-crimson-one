@@ -1,7 +1,7 @@
 'use strict';
 const line = require('@line/bot-sdk');
 const express = require('express');
-const nlpManager = require('./ai-train');
+const nlpManager = require('./ai-loader');
 const config = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
   channelSecret: process.env.CHANNEL_SECRET,
