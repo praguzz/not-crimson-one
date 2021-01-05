@@ -12,6 +12,6 @@ const manager = new NlpManager({languages: ['en']});
 
     await manager.train();
     manager.save();
-    const response = await manager.process('en', 'How is the weather in Tainan');
+    const response = await manager.process('en', 'Weather in Tainan');
     console.log(JSON.stringify(response));
 })();
