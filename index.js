@@ -31,7 +31,8 @@ function handleEvent(event) {
         text: 'I don\'t understand this message'
       };
       if (result.intent !== 'None') {
-        searchReply.text = result.answer;
+        console.log(result);
+        searchReply.text = "Masuk sih...";
       }
       return client.replyMessage(event.replyToken, searchReply).catch((error)=>{
         console.log(error)
