@@ -32,7 +32,7 @@ function handleEvent(event) {
       };
       if (result.intent !== 'None') {
         console.log(result);
-        searchReply.text = "Masuk sih...";
+        searchReply.text = result?.[0].sourceText;
       }
       return client.replyMessage(event.replyToken, searchReply).catch((error)=>{
         console.log(error)
