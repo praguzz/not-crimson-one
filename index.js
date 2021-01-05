@@ -175,7 +175,13 @@ function handleEvent(event) {
                   ]
                 }
               };
-            return client.replyMessage(event.replyToken, object).catch((error)=>{
+
+            let smData = [{
+                "type": "flex",
+                "altText": "This is a Flex Message",
+                "contents": object
+            }]
+            return client.replyMessage(event.replyToken, smData).catch((error)=>{
                 console.log(error)
             });
         })
