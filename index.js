@@ -37,12 +37,15 @@ function handleEvent(event) {
         searchReply.text = result.entities?.[0].sourceText ?? "Not Found";
         request({url: "http://api.openweathermap.org/data/2.5/weather?q="+result.entities?.[0]?.sourceText.replace(" ", "%20")+"&appid=" + config.openWeatherSecret, method: "GET"}, (err, resp, body) => {
             searchReply.text = resp;
+            return client.replyMessage(event.replyToken, searchReply).catch((error)=>{
+                console.log(error)
+            });
         })
-
+      }else{
+        return client.replyMessage(event.replyToken, searchReply).catch((error)=>{
+            console.log(error)
+          });
       }
-      return client.replyMessage(event.replyToken, searchReply).catch((error)=>{
-        console.log(error)
-      });
     });
   }  
   return Promise.resolve(null);
